@@ -17,7 +17,7 @@ class TodoListsController < ApplicationController
     @todo_list = TodoList.new
   end
 
-  # GET /todo_lists/1/edit
+ # GET /todo_lists/1/edit
   def edit
   end
 
