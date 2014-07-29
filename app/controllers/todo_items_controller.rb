@@ -24,7 +24,7 @@ class TodoItemsController < ApplicationController
    end 
 
    def update
-     @todo_item = @todo_list.todo_items.find(params[:id])
+       @todo_item = @todo_list.todo_items.find(params[:id])
      if @todo_item.update_attributes(todo_items_param) 
        flash[:success] = "Saved todo list item"
        redirect_to todo_list_todo_items_path
@@ -33,13 +33,23 @@ class TodoItemsController < ApplicationController
        render action: :edit 
     end 
    end 
+
+   def destroy 
+      @todo_item = @todo_list.todo_items.find(params[:id]) 
+      if @todo_item.destroy 
+        flash[:success] = "Your todo item has been destroyed" 
+      else 
+        flash[:error] = "Something whent wrong your todo item wasn's deleted"
+      end 
+      redirect_to todo_list_todo_items_path 
+    end 
  
-   def url_options
-    {todo_list_id: params[:todo_list_id] }.merge(super) 
-   end 
-  end
-  
+  def url_options
+   {todo_list_id: params[:todo_list_id] }.merge(super) 
+  end 
+ end
   private 
+  
   def find_todo_list
     @todo_list = TodoList.find(params[:todo_list_id]) 
   end 
