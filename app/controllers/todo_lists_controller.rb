@@ -1,28 +1,21 @@
 class TodoListsController < ApplicationController
   before_action :set_todo_list, only: [:show, :edit, :update, :destroy]
+  before_action :require_user 
 
-  # GET /todo_lists
-  # GET /todo_lists.json
   def index
     @todo_lists = TodoList.all
   end
 
-  # GET /todo_lists/1
-  # GET /todo_lists/1.json
   def show
   end
 
-  # GET /todo_lists/new
   def new
     @todo_list = TodoList.new
   end
-
- # GET /todo_lists/1/edit
+  
   def edit
   end
 
-  # POST /todo_lists
-  # POST /todo_lists.json
   def create
     @todo_list = TodoList.new(todo_list_params)
 
