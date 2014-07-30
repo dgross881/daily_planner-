@@ -6,6 +6,13 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+<div class="nav">
+    <h1><%= link_to "Daily Planner", root_path %></h1>
+    <ul>
+      <li><%= link_to "Todo Lists", todo_lists_path %></li>
+    </ul>
+    <br class="clear" />
+  </div>
 <body>
   <% flash.each do |type, message| %>
   <div class="alert flash  <%= type %>"> 

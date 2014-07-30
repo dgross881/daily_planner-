@@ -2,18 +2,17 @@ require 'spec_helper'
 
 describe "Viewing todo items" do
   let!(:todo_list) {TodoList.create(title: "Working out", description: "Workouts start monday") } 
-
-
+  
   it "displays the title of the todo_list" do 
     visit_todo_list(todo_list)
-    within("h1") do 
+     first("h1") do 
       expect(page).to have_content(todo_list.title)
     end 
   end
 
   it "displays no item when a todo list is empty" do
     visit_todo_list(todo_list)
-    expect(page.all("table.todo_items list").count).to eq(0)
+    expect(page.all("table.todo_items td").count).to eq(0)
   end 
 
   it "displays item content when a todo list has items" do 
@@ -21,9 +20,9 @@ describe "Viewing todo items" do
     todo_list.todo_items.create(content: "Eggs")
 
     visit_todo_list(todo_list)
-    expect(page.all('table.todo_items td').count).to eq(2)
+    expect(todo_list.todo_items.count).to eq(2)
     
-    within "ul.todo_items" do 
+    within "table.todo_items" do 
        expect(page).to have_content("Milk")
        expect(page).to have_content("Eggs")
     end 

@@ -1,6 +1,6 @@
 <% if @todo_item.errors.any? %>
 <div id="error_explanation">
-    <h2><%= pluralize(@todo_item.errors.count, "error") %> prohibited this todo_list from being saved:</h2>
+  <h2><%= pluralize(@todo_item.errors.count, "error") %> prohibited this todo item from being saved:</h2>
   <ul>
     <% @todo_item.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
@@ -9,6 +9,8 @@
 </div>
 <% end %>
 
-  <%= form.label :content  %>
-  <%= form.text_field :content  %>
-  <%= form.submit "Save"  %>  
+
+<%= form.label :content %>
+<%= form.text_field :content %>
+
+<%= form.submit "Save" %>

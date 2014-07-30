@@ -31,7 +31,7 @@ describe "Creating todo lists" do
     expect(page).not_to have_content("On Monday the workouts begin")
   end 
   it "displays an error with bad descriptions" do 
-    create_todo_list description: "apple"
+    create_todo_list description: "big"
 
     expect(page).to have_content("Description is too short")
     expect(TodoList.count).to eq(0)

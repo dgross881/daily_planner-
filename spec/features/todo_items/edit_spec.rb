@@ -6,7 +6,7 @@ describe "Editing todo items" do
 
   it "is successful with valid content" do 
     visit_todo_list(todo_list)
-    within("#todo_item_#{todo_item.id}") do 
+   within("#todo_item_#{todo_item.id}") do 
      click_link "Edit"
    end 
   
