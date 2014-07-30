@@ -24,7 +24,7 @@ gem "rspec-rails", "~> 2.14.1"
 end 
 
 group :test do 
-gem 'factory_girl', '~> 4.4.0'
+gem "factory_girl_rails", "~> 4.2.1"
 gem "capybara", "~> 2.2.1"
 gem "shoulda-matchers", "~> 2.5.0"
 end 
