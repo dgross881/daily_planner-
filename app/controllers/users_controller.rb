@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
-
   # GET /users/new
   def new
     @user = User.new
@@ -18,8 +17,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        session[:user_id] = @user.id 
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        session[:user_id] = @user.id
+        format.html { redirect_to todo_lists_path, success: 'Thanks for signing up!' }
         format.json { render action: 'show', status: :created, location: @user }
       else
         format.html { render action: 'new' }
