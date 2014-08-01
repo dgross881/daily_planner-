@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.2'
+gem 'rails', '4.1.4'
 gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'foundation-rails', '~> 5.3.1.0'
 gem 'sqlite3'
