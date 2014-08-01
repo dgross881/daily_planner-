@@ -24,11 +24,6 @@ describe UserSessionsController do
         expect(response).to redirect_to(todo_lists_path)
      end
      
-     it "sets the rememeber_me_token_cookie" do
-       expect(cookies).to_not have_key('remember_me_token') 
-        post :create, email: "dgross881@gmail.com", password: "foobar", remember_me: "1" 
-       expect(cookies).to have_key('remember_me_token') 
-    end
     
      it "finds the user" do
         expect(User).to receive(:find_by).with({email: "dgross881@gmail.com"}).and_return(user) 
@@ -40,12 +35,21 @@ describe UserSessionsController do
         expect(user).to receive(:authenticate) 
         post :create, email: "dgross881@gmail.com", password: "foobar"
      end 
+     
+     
+     it "sets the rememeber_me_token_cookie" do
+       expect(cookies).to_not have_key('remember_me_token') 
+        post :create, email: "dgross881@gmail.com", password: "foobar", remember_me: "1" 
+       expect(cookies).to have_key('remember_me_token') 
+       expect(cookies['remember_me_token']).to_not be_nil
+     end
 
      it "sets the user_id in the session" do
        post :create, email: "dgross881@gmail.com", password: "foobar"
        expect(session[:user_id]).to eq(user.id)
      end
 
+     
      it "sets a flash success message" do
        post :create, email: "dgross881@gmail.com", password: "foobar"
        expect(flash[:success]).to eq("Thanks for logging in") 
@@ -94,6 +98,15 @@ describe UserSessionsController do
        post :create
        expect(flash[:error]).to eq("Error please try again") 
      end
+      
+    
+      it "removes the remember_me_token cookie" do
+        cookies['remember_me_token'] = 'remembered'
+        delete :destroy
+        expect(cookies).to_not have_key('remember_me_token')
+        expect(cookies['remember_me_token']).to be_nil
+      end
+
     end
   end
 

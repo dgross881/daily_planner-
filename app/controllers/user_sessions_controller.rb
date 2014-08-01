@@ -20,8 +20,9 @@ class UserSessionsController < ApplicationController
 
   def destroy
    session[:user_id] = nil
-   cookies.delete(:remeber_me_token)
+   cookies.delete(:remember_me_token)
    reset_session
    redirect_to root_path, notice: "You have been logged out"
   end 
 end
+

@@ -5,16 +5,34 @@ class ApplicationController < ActionController::Base
   add_flash_types :success 
 
   private 
+
+  def render_404
+    render file: 'public/404.html', status: :not_found, layout: false 
+  end 
+
+  def render_error
+    render file: 'public/500.html', status: :internal_server_error, layout: false 
+  end 
+
   def logged_in?
       current_user
   end
   
   helper_method :logged_in?
-  
-  def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
-  end
 
+ def current_user
+  @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  if session[:user_id]
+    @current_user ||= User.find(session[:user_id])
+  elsif cookies.permanent.signed[:remember_me_token]
+    verification = Rails.application.message_verifier(:remember_me).verify(cookies.permanent.signed[:remember_me_token])
+    if verification
+      Rails.logger.info "Logging in by cookie."
+      @current_user ||= User.find(verification)
+    end
+  end
+end
+  
   def require_user 
     if current_user
       true
