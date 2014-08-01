@@ -10,7 +10,6 @@ describe "Editing todo lists"  do
  
  def update_todo_list(options={})
     options[:title] ||= "Workout Plan" 
-    options[:description] ||= "Workouts begin on Monday"
     todo_list ||= options[:todo_list]
     
     visit "/todo_lists"
@@ -18,7 +17,6 @@ describe "Editing todo lists"  do
       click_link "Edit" 
     end 
     fill_in "Title", with: options[:title]
-    fill_in "Description", with: options[:description]
     click_button "Update Todo list"
   end  
 
@@ -28,7 +26,6 @@ describe "Editing todo lists"  do
 
   expect(page).to have_content("Todo list was successfully updated") 
   expect(todo_list.title).to eq("Workout Plan")
-  expect(todo_list.description).to eq("Workouts begin on Monday") 
  end 
 
  it "displays an error with no title" do 
@@ -47,24 +44,5 @@ describe "Editing todo lists"  do
  expect(todo_list.title).to eq(title)
  expect(page).to have_content("error")
  end
-
- it "displays an error with no description" do
-   update_todo_list todo_list: todo_list, description: ""
-   description = todo_list.description
-   todo_list.reload
-   
-   expect(todo_list.description).to eq(description)
-   expect(page).to have_content("error")
- end 
-
-
- it "display an error with too short a description" do 
-   update_todo_list todo_list: todo_list, description: "poop" 
-   description = todo_list.description
-
-   todo_list.reload
-   expect(todo_list.description).to eq(description)
-   expect(page).to have_content("error")
- end 
 end
 

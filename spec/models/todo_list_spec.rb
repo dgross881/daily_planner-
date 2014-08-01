@@ -6,7 +6,7 @@ describe TodoList do
   end 
 
   describe "#has_complete_items?" do
-     let(:todo_list)  { TodoList.create(title: "Grocerires", description: "Grocery List") } 
+     let(:todo_list)  { TodoList.create(title: "Grocerires" ) } 
 
      it "returns true with completed todo list items" do
        todo_list.todo_items.create(content: "Eggs", completed_at: 1.minute.ago)
