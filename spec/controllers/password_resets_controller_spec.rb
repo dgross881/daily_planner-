@@ -108,7 +108,7 @@ describe PasswordResetsController do
        end
        it "redirects to the todo list path" do
            patch :update, id: user.password_reset_token, user: { password: 'newpassword', password_confirmation: 'newpassword' }
-           expect(response).to redirect_to(todo_list_path) 
+           expect(response).to redirect_to(todo_lists_path) 
        end
 
      end

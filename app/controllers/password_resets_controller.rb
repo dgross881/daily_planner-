@@ -5,7 +5,7 @@ class PasswordResetsController < ApplicationController
  end 
 
  def create
-  user =  User.find_by(email: params[:email])
+  user =User.find_by(email: params[:email])
   if user
     user.generate_password_reset_token!
     Notifier.password_reset(user).deliver
@@ -30,7 +30,7 @@ class PasswordResetsController < ApplicationController
     if @user && @user.update_attributes(user_params) 
       @user.update_attribute(:password_reset_token, nil)
       session[:user_id] = @user.id
-      redirect_to todo_list_path, success:  "Your password has been updated"
+      redirect_to todo_lists_path, success:"Your password has been updated"
     else 
       flash.now[:notice] = "Password reset token can not be found"
       render action: 'edit'
