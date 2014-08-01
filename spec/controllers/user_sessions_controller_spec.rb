@@ -24,11 +24,11 @@ describe UserSessionsController do
         expect(response).to redirect_to(todo_lists_path)
      end
      
-    # it "sets the rememeber_me_token_cookie" do
-     #  expect(cookies).to_not have_key('remember_me_token') 
-      #  post :create, email: "dgross881@gmail.com", password: "foobar", remember_me: "1" 
-      # expect(cookies).to have_key('remember_me_token') 
-    # end
+     it "sets the rememeber_me_token_cookie" do
+       expect(cookies).to_not have_key('remember_me_token') 
+        post :create, email: "dgross881@gmail.com", password: "foobar", remember_me: "1" 
+       expect(cookies).to have_key('remember_me_token') 
+    end
     
      it "finds the user" do
         expect(User).to receive(:find_by).with({email: "dgross881@gmail.com"}).and_return(user) 

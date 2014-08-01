@@ -1,1 +1,0 @@
-DailyPlanner::Application.config.secret_key_base = '71c024ad648355c9c4674f541324c91b1d96677661adda8d640fbb05a0bd9e8f856a8c3157ce9a7dd1aba9eb8b267e6d7038320d62eb5d5a1e167904907fab73'
