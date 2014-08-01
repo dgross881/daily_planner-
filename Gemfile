@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 gem 'bcrypt-ruby', '~> 3.1.2'
+gem 'foundation-rails', '~> 5.3.1.0'
 gem 'sqlite3'
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
@@ -20,6 +21,8 @@ group :doc do
 end
 
 group :development, :test do
+gem 'spring', '~> 1.1.3'
+gem 'quiet_assets', '~> 1.0.3'
 gem "rspec-rails", "~> 2.14.1"
 end 
 

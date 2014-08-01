@@ -23,6 +23,12 @@ describe UserSessionsController do
         expect(response).to be_redirect
         expect(response).to redirect_to(todo_lists_path)
      end
+     
+     it "sets the rememeber_me_token_cookie" do
+       expect(cookies).to_not have_key('remember_me_token') 
+        post :create, email: "dgross881@gmail.com", password: "foobar", remember_me: "1" 
+       expect(cookies).to have_key('remember_me_token') 
+     end
     
      it "finds the user" do
         expect(User).to receive(:find_by).with({email: "dgross881@gmail.com"}).and_return(user) 
@@ -44,6 +50,7 @@ describe UserSessionsController do
        post :create, email: "dgross881@gmail.com", password: "foobar"
        expect(flash[:success]).to eq("Thanks for logging in") 
      end
+     
    end
   
   shared_examples_for "denied login" do 
