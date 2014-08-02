@@ -1,7 +1,7 @@
 <h2 class="page-title"><%= @todo_list.title %></h1>
 <ul class="list todo-items no-bullet">
   <% @todo_list.todo_items.each do |todo_item| %>
-  <li id=" <%= dom_id(todo_item) %>" class="todo-item row">
+  <li id="<%= dom_id(todo_item) %>" class="todo-item row">
     <div class="small-2 medium-1 columns checkmark">   
       <% if todo_item.completed? %>
        <%= link_to "Mark Incomplete", complete_todo_list_todo_item_path(@todo_list, todo_item), method: :patch, class: "icon-check checked hide-text" %>

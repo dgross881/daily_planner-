@@ -7,14 +7,14 @@ feature "Viewing todo items" do
   
   scenario "displays the title of the todo_list" do 
     visit_todo_list(todo_list)
-     first("h1") do 
+     first("h2.page-title") do 
       expect(page).to have_content(todo_list.title)
     end 
   end
 
   scenario "displays no item when a todo list is empty" do
     visit_todo_list(todo_list)
-    expect(page.all("table.todo_items td").count).to eq(0)
+    expect(page.all(".todo-items td").count).to eq(0)
   end 
 
   scenario "displays item content when a todo list has items" do 
@@ -24,7 +24,7 @@ feature "Viewing todo items" do
     visit_todo_list(todo_list)
     expect(todo_list.todo_items.count).to eq(2)
     
-    within "table.todo_items" do 
+    within ".todo-items" do 
        expect(page).to have_content("Milk")
        expect(page).to have_content("Eggs")
     end 

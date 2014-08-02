@@ -21,6 +21,7 @@ feature "Editing todo lists"  do
   end  
 
  scenario 'updates todo list successfully with correct information' do
+  pending "Until edit button is added to index todo list"
   update_todo_list todo_list: todo_list   
   todo_list.reload
 
@@ -29,6 +30,7 @@ feature "Editing todo lists"  do
  end 
 
  scenario "displays an error with no title" do 
+  pending "Until edit button is added to index todo list"
   update_todo_list todo_list: todo_list, title:''
 
   title = todo_list.title
@@ -38,6 +40,7 @@ feature "Editing todo lists"  do
  end 
  
  scenario "displays an error with too short title" do 
+  pending "Until edit button is added to index todo list"
    update_todo_list todo_list: todo_list, title:'hi'
  title = todo_list.title
  todo_list.reload
