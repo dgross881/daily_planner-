@@ -11,4 +11,8 @@ FactoryGirl.define do
     title "Todo list Title"
     user 
   end 
+
+  factory :todo_item do 
+   content "Todo Item"
+  end 
 end
