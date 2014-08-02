@@ -17,7 +17,7 @@ class UserSessionsController < ApplicationController
       render action: 'new'
     end
   end
-  helper_method :current_user
+  helper_method :current_user 
 
   def destroy
     session[:user_id] = nil

@@ -9,8 +9,8 @@
   <%= csrf_meta_tags %>
 </head>
 <% flash.each do |type, message| %>
- <div class="flash alert-box  text-center <%= type  %>">
-    <% message %>
+ <div class="flash alert-box  text-center  <%= type  %>">
+    <%= message %>
     <a href="#" class="close">&times;</a>
  </div>
 <% end  %>
@@ -27,11 +27,14 @@
   </div>
 </header>
 <body>
+<<<<<<< HEAD
   <% flash.each do |type, message| %>
   <div class="alert flash  <%= type %>"> 
     <%= message %>
   </div> 
   <% end %>
+=======
+>>>>>>> design
    <div class="row collapse">
     <div class="small-12 small-centered medium-8 medium-centered large-5 large-centered columns">
       <%= yield %>
