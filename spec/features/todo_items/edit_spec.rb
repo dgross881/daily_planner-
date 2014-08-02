@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe "Editing todo items" do 
+feature "Editing todo items" do 
  let(:user) { create(:user) }
  let!(:todo_list)  { create(:todo_list) }  
  let!(:todo_item) {todo_list.todo_items.create(content: "Push ups") } 
  before { sign_in todo_list.user, password: "treehouse1" }
   
-  it "is successful with valid content" do 
+  scenario "is successful with valid content" do 
     visit_todo_list(todo_list)
    within("#todo_item_#{todo_item.id}") do 
      click_link "Edit"
@@ -19,7 +19,7 @@ describe "Editing todo items" do
    expect(todo_item.content).to eq("Lots of Pushups") 
  end 
 
-  it "is unsuccessful with valid content" do 
+  scenario "is unsuccessful with valid content" do 
     visit_todo_list(todo_list)
     within("#todo_item_#{todo_item.id}") do 
      click_link "Edit"

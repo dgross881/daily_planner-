@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe "Deleting todo items" do
+feature "Deleting todo items" do
  let(:user) { create(:user) }
  let!(:todo_list)  { create(:todo_list) }  
  let!(:todo_item) {todo_list.todo_items.create(content: "Push ups") } 
  before { sign_in todo_list.user, password: "treehouse1" }
   
-  it "is succesful" do 
+  scenario "is succesful" do 
    visit_todo_list(todo_list)
      within "#todo_item_#{todo_item.id}" do
      click_link "Delete"

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Adding todo items" do
+feature "Adding todo items" do
   let(:user) { create(todo_list.user) }
   let!(:todo_list)  { create(:todo_list) } 
   
@@ -8,7 +8,7 @@ describe "Adding todo items" do
    sign_in todo_list.user, password: "treehouse1"
   end 
 
-  it "is successful with valid content" do
+  scenario "is successful with valid content" do
     visit_todo_list(todo_list)
     click_link "New Todo Item"
     fill_in "Content", with: "Milk"
@@ -19,7 +19,7 @@ describe "Adding todo items" do
     end
   end
 
-  it "displays an error with no content" do
+  scenario "displays an error with no content" do
     visit_todo_list(todo_list)
     click_link "New Todo Item"
     fill_in "Content", with: ""
@@ -30,7 +30,7 @@ describe "Adding todo items" do
     expect(page).to have_content("Content can't be blank")
   end
 
-  it "displays an error with content less than 2 characters long" do
+  scenario "displays an error with content less than 2 characters long" do
     visit_todo_list(todo_list)
     click_link "New Todo Item"
     fill_in "Content", with: "1"

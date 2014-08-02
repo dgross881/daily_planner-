@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe "Forgotten passwords" do
+feature "Forgotten passwords" do
   let!(:user) { create(:user) } 
 
-  it "It sends user an email" do
+  scenario "It sends user an email" do
     visit login_path
     click_link "Forgot Password"
     fill_in "Email", with: user.email
@@ -12,7 +12,7 @@ describe "Forgotten passwords" do
     }.to change{ActionMailer::Base.deliveries.size}.by(1)
   end
   
-  it "resets a password when following the email link" do
+  scenario "resets a password when following the email link" do
     visit login_path
     click_link "Forgot Password"
     fill_in "Email", with: user.email

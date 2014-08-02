@@ -52,7 +52,7 @@ describe UserSessionsController do
      
      it "sets a flash success message" do
        post :create, email: "dgross881@gmail.com", password: "foobar"
-       expect(flash[:success]).to eq("Thanks for logging in") 
+       expect(flash[:success]).to eq("Thanks for logging in!") 
      end
      
    end
@@ -65,7 +65,7 @@ describe UserSessionsController do
      
      it "sets falsh error message" do
        post :create
-       expect(flash[:error]).to eq("Error please try again") 
+       expect(flash[:error]).to match(/Please check your email and password./) 
      end
    end 
    
@@ -96,7 +96,7 @@ describe UserSessionsController do
      
      it "sets flash error message" do
        post :create
-       expect(flash[:error]).to eq("Error please try again") 
+       expect(flash[:error]).to match(/Please check your email and password./) 
      end
       
     

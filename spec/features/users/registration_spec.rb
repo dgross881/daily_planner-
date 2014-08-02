@@ -1,7 +1,7 @@
 require 'spec_helper' 
 
-describe "Signin up" do
-  it "allows a user to sign up for the site and creates the object in the database" do
+feature "Signin up" do
+  scenario "allows a user to sign up for the site and creates the object in the database" do
   expect(User.count).to eq(0) 
 
   visit "/"

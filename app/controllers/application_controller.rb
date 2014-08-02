@@ -20,18 +20,19 @@ class ApplicationController < ActionController::Base
   
   helper_method :logged_in?
 
- def current_user
-  @current_user ||= User.find(session[:user_id]) if session[:user_id]
-  if session[:user_id]
-    @current_user ||= User.find(session[:user_id])
-  elsif cookies.permanent.signed[:remember_me_token]
-    verification = Rails.application.message_verifier(:remember_me).verify(cookies.permanent.signed[:remember_me_token])
-    if verification
-      Rails.logger.info "Logging in by cookie."
-      @current_user ||= User.find(verification)
+  def current_user
+   if session[:user_id]
+     @current_user ||= User.find(session[:user_id])
+   elsif cookies.permanent.signed[:remember_me_token]
+     verification = Rails.application.message_verifier(:remember_me).verify(cookies.permanent.signed[:remember_me_token])
+     if verification
+       Rails.logger.info "Logging in by cookie."
+       @current_user ||= User.find(verification)
+     end
     end
   end
-end
+  helper_method :current_user
+
   
   def require_user 
     if current_user
