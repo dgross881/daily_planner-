@@ -9,7 +9,7 @@
   <%= csrf_meta_tags %>
 </head>
 <% flash.each do |type, message| %>
- <div class="alert-box  text-center alert flash <%= type  %>">
+ <div class="flash alert-box  text-center  <%= type  %>">
     <%= message %>
     <a href="#" class="close">&times;</a>
  </div>
