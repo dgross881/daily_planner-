@@ -1,0 +1,22 @@
+.global-header {
+  .header-icon{
+  margin-top: 10px;
+  padding: 1.5em 0.25em;
+   }
+ }
+.logo {
+  marin: 0.4 0;
+  a {
+    background: transparent no-repeat center center; 
+    background-size: contain; 
+    display: block; 
+    height: 34px; 
+  }
+}
+.page-title {
+  background: $blue;
+  color: #fff;
+  text-align: center; 
+  font-size: 1.5em;
+  }
+
