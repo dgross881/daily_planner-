@@ -3,9 +3,9 @@ class TodoItemsController < ApplicationController
   before_action :find_todo_list
   before_action :set_back_link, except: [:index]
 
-  def index
-   go_back_link todo_lists_path
-  end
+  def index 
+    go_back_link todo_lists_path   
+  end 
 
   def new
     @todo_item = @todo_list.todo_items.new

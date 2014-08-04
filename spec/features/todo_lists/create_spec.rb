@@ -8,7 +8,7 @@ feature "Creating todo lists" do
 
     visit "/todo_lists"
     click_link "Todo List"
-    expect(page).to have_content("New Todo list")
+    expect(page).to have_content("New Todo List")
 
     fill_in "Title", with: options[:title]
     click_button "Create Todo list"
