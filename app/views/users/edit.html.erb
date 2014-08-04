@@ -1,6 +1,25 @@
-<%= title "My Profile" %>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+<%= title "Account Settings" %>
+<%= form_for(@user) do |f| %>
+ <%= render partial: 'users/error' %>
+ <fieldset  class="">
+   <legend>About You</legend>
+    <%= f.label :first_name, "First Name" %>
+    <%= f.text_field :first_name %>
+    <%= f.label :last_name, "Last Name" %>
+    <%= f.text_field :last_name %>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+ </fieldset>
+ <fieldset  class="">
+   <legend>Change Your Password</legend>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+    <%= f.label :password_confirmation, "Password(again)" %>
+    <%= f.password_field :password_confirmation %>
+ </fieldset>
+ <div class="row">
+   <div class="small-12 columns">
+     <%= f.submit "Save", class: "button radius expand" %>
+   </div>
+ </div>
+<% end %>
