@@ -1,14 +1,20 @@
 <%= title "Sign in" %>
+<div class= "row">
+  <div class="small-12 columns">
+    <%= form_tag user_sessions_path do %>
+      <%= label_tag :email, "Email Address" %>
+      <%= text_field_tag :email, params[:email] %>
 
-<%= form_tag user_sessions_path do %>
-  <%= label_tag :email, "Email Address" %>
-  <%= text_field_tag :email, params[:email] %>
-
-  <%= label_tag :password, "Password" %>
-  <%= password_field_tag :password %>
-  <%= label_tag :remember_me, "Remember Me?" %>
-  <%= check_box_tag :remember_me %>
-
-  <%= submit_tag "Log In" %>
+      <%= label_tag :password, "Password" %>
+      <%= password_field_tag :password %>
+      <%= label_tag :remember_me, "Remember Me?" %>
+      <%= check_box_tag :remember_me %>
+  </div>
+</div>
+<div class="rows">
+  <div class="small-12 columns">
+  <%= submit_tag "Log In", class: "button radius expand" %>
   <%= link_to "Forgot Password", new_password_reset_path %>
 <% end %>
+ </div>
+</div>
