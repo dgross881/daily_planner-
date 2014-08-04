@@ -5,14 +5,15 @@
    }
  }
 .logo {
-  marin: 0.4 0;
+  margin: 0.4em 0;
   a {
-    background: transparent no-repeat center center; 
-    background-size: contain; 
-    display: block; 
-    height: 34px; 
+    background: transparent url(asset_path(#{"logo-odot.svg"})) no-repeat center center;
+    background-size: contain;
+    display: block;
+    height: 34px;
   }
 }
+
 .page-title {
   background: $blue;
   color: #fff;

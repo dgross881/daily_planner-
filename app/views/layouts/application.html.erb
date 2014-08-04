@@ -16,13 +16,10 @@
 <% end  %>
 <header class="row global-header">
   <div class="small-12 small-centered medium-8 medium-centered large-5 large-centered columns">
-    <h1><%= link_to "Daily Planner", root_path %></h1>
-    <%= link_to "Todo Lists", todo_lists_path %>
     <% if logged_in? %>
-      <%= link_to "Log Out", logout_path, method: :delete %>
+      <%= render partial: 'layouts/header_logged_in' %>
     <% else %>
-      <%= link_to "Log In", new_user_session_path %>
-      <%= link_to "Sign Up", new_user_path %>
+      <%= render partial: 'layouts/header_logged_out' %>
     <% end %>
   </div>
 </header>
@@ -32,12 +29,12 @@
       <%= yield %>
     </div> 
   </div>
-  <foot class="row">
+  <footer class="row global-footer">
     <div class="small-12 small-centered medium-8 medium-centered large-5 large-centered columns text-center">
       <% if logged_in? %>
-      <%= link_to "Settings", edit_user_path(current_user) %>
-      <% end -%>
+        <%= link_to "Settings", edit_user_path(current_user) %>
+      <% end %>
     </div>
-  </foot>   
+  </footer>
 </body>
 </html>
