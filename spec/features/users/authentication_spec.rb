@@ -8,8 +8,8 @@ feature "Loggin In" do
     fill_in "Password", with: "foobar"
     click_button "Log In" 
 
-    expect(page).to have_content("Todo Lists") 
-    expect(page).to have_content("Thanks for logging in") 
+    expect(page).to have_content("Thanks for logging in!") 
+    expect(page).to have_selector("h2", "Todo lists")
   end
   
   it "still displays the email address in the event of a failed login" do 
