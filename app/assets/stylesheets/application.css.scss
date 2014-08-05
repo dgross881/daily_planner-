@@ -11,9 +11,10 @@
  * file per style scope.
  *
  *= require foundation_and_overrides
+ *= require font-awesome
  *= require_self
-
  */
+
 @import 'modules/variable';
 @import 'modules/mixins';
 @import 'modules/helpers';

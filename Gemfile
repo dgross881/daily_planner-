@@ -11,6 +11,7 @@ gem 'selenium-webdriver', '~> 2.42.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
+gem 'font-awesome-rails', '~> 4.1.0.0'
 gem 'jbuilder', '~> 1.2'
 gem "rspec", "~> 2.14.1"
 gem "mysql2", "~> 0.3.15"
