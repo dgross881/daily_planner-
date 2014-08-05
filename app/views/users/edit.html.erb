@@ -1,25 +1,15 @@
 <%= title "Account Settings" %>
-<%= form_for(@user) do |f| %>
- <%= render partial: 'users/error' %>
- <fieldset  class="">
+<%= form_for(@user, builder: FoundationFormBuilder) do |f| %>
+ <fieldset>
    <legend>About You</legend>
-    <%= f.label :first_name, "First Name" %>
     <%= f.text_field :first_name %>
-    <%= f.label :last_name, "Last Name" %>
     <%= f.text_field :last_name %>
-    <%= f.label :email %>
     <%= f.text_field :email %>
  </fieldset>
- <fieldset  class="">
+ <fieldset>
    <legend>Change Your Password</legend>
-    <%= f.label :password %>
     <%= f.password_field :password %>
-    <%= f.label :password_confirmation, "Password(again)" %>
-    <%= f.password_field :password_confirmation %>
+    <%= f.password_field :password_confirmation, label: "Password(again)" %>
  </fieldset>
- <div class="row">
-   <div class="small-12 columns">
      <%= f.submit "Save", class: "button radius expand" %>
-   </div>
- </div>
 <% end %>

@@ -28,7 +28,7 @@ feature "Editing todo items" do
    fill_in "Content", with: ""
    click_button "Save"
    expect(page).to_not have_content("Saved todo list item")
-   expect(page).to have_content("Content can't be blank")
+   expect(page).to have_content(/Can't be blank/)
    todo_item.reload 
    expect(todo_item.content).to eq("Push ups")
  end 

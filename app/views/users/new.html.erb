@@ -1,43 +1,9 @@
 <%= title "Sign up" %>
-<%= form_for(@user) do |f| %>
-<div class="row">
-  <div class="small-12 columns">   
-   <%= render partial: 'users/error' %>
-   </div>
- </div>
- <div class="row">
-   <div class="small-12 columns">
-      <%= f.label :first_name, "First Name" %>
-      <%= f.text_field :first_name %>
-   </div>
- </div>
- <div class="row">
-   <div class="small-12 columns">
-      <%= f.label :last_name, "Last Name" %>
+<%= form_for(@user, builder: FoundationFormBuilder) do |f| %>
+      <%= f.text_field :first_name, label: "First Name", auto_focus: "auto_focus" %>
       <%= f.text_field :last_name %>
-   </div>
- </div>
- <div class="row">
-   <div class="small-12 columns">
-      <%= f.label :email %>
       <%= f.text_field :email %>
-   </div>
- </div>
- <div class="row">
-   <div class="small-12 columns">
-      <%= f.label :password %>
       <%= f.password_field :password %>
-   </div>
- </div>
- <div class="row">
-   <div class="small-12 columns">
-      <%= f.label :password_confirmation, "Password(again)" %>
-      <%= f.password_field :password_confirmation %>
-  </div>
-</div>
- <div class="row">
-   <div class="small-12 columns">
+      <%= f.password_field :password_confirmation, label: "Password(again)" %>
      <%= f.submit "Sign Up", class: "button radius expand" %>
-   </div>
- </div>
 <% end %>
