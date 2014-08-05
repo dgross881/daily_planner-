@@ -1,5 +1,5 @@
 require 'spec_helper'
-feature "Editing todo lists" do
+feature "Editing todo lists"do
   let(:user) { todo_list.user } 
   let!(:todo_list)  { create(:todo_list) }  
   
@@ -7,7 +7,7 @@ feature "Editing todo lists" do
   sign_in user, password: "treehouse1"
  end 
  
-  scenario "is succesful when clicking destory link" do 
+  scenario "is succesful when clicking destory link"  do 
   pending "Until delete  button is added to index todo list"
    visit "/todo_lists"
 

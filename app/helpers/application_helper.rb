@@ -1,10 +1,10 @@
 module ApplicationHelper
 
-  def title(title)  
-   content_for(:title) { "#{title} | " }
-   content_tag(:h2, title, class: "page-title truncate", title: title) 
+  def title(title)
+    content_for(:title) { "#{title} | " }
+    content_tag(:h2, title, class: "page-title truncate", title: title)
   end 
-
+  
   def new_item_link
     if @todo_list && !@todo_list.new_record?
       text, path = "Todo Item", new_todo_list_todo_item_path(@todo_list)

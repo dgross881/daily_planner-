@@ -1,14 +1,6 @@
-<%= form_for(@todo_list) do |f| %>
- <%= render partial: 'todo_lists/errors' %>
-  <div class="row">
-     <div class= "small-12 columns">
-       <%= f.label :title, label: "List Title", autofocus: "autofocus" %>
-       <%= f.text_field :title %>
-     </div>
-  </div>
-  <div class="row">
-    <div class= "small-12 columns">
-      <%= f.submit "Save", class: "button radius expand" %>
-   </div>
-  </div>
+<%= form_for(@todo_list, builder: FoundationFormBuilder) do |f| %>
+ 
+  <%= f.text_field :title, label: "List Title", autofocus: :autofocus %>
+  <%= f.submit "Save"  %>
+
 <% end %>

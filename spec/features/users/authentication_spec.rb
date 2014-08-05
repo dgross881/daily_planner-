@@ -6,17 +6,17 @@ feature "Loggin In" do
     visit new_user_session_path
     fill_in "Email Address", with: "dgross881@gmail.com"
     fill_in "Password", with: "foobar"
-    click_button "Log In" 
+    click_button "Sign In" 
 
-    expect(page).to have_content("Thanks for logging in!") 
-    expect(page).to have_selector("h2", "Todo lists")
+    expect(page).to have_content("Todo Lists") 
+    expect(page).to have_content("Thanks for logging in")
   end
   
   it "still displays the email address in the event of a failed login" do 
     visit new_user_session_path
     fill_in "Email Address", with: "dgross881@gmail.com"
     fill_in "Password", with: "wrong password"
-    click_button "Log In" 
+    click_button "Sign In" 
 
     expect(page).to have_content("Please check your email and password") 
     expect(page).to have_field("Email Address", with: "dgross881@gmail.com") 

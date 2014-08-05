@@ -19,7 +19,7 @@ feature "Forgotten passwords" do
     click_button "Reset Password"
     open_email(user.email)
     current_email.click_link "http://"
-    expect(page).to have_content("Change Your Password")
+    expect(page).to have_selector("h2","Reset Password")
 
     fill_in "Password", with: "mynewpassword1"
     fill_in "Password(again)", with: "mynewpassword1"
@@ -32,7 +32,7 @@ feature "Forgotten passwords" do
     visit login_path
     fill_in "Email", with: user.email
     fill_in "Password", with: "mynewpassword1"
-    click_button "Log In"
-    expect(page).to have_content("Thanks for logging in ")
+    click_button "Sign In"
+    expect(page).to have_content("Thanks for logging in!")
   end
 end

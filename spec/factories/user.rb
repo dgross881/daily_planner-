@@ -8,11 +8,11 @@ FactoryGirl.define do
   end
 
   factory :todo_list do
-    title "Todo list Title"
-    user 
-  end 
+    title  "Todo List Title"
+    user
+  end
 
-  factory :todo_item do 
-   content "Todo Item"
-  end 
+  factory :todo_item do
+    content "Todo Item"
+  end
 end

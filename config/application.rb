@@ -22,5 +22,7 @@ module DailyPlanner
     I18n.enforce_available_locales = false
     config.action_mailer.preview_path = "#{Rails.root}/spec/mailers/mailer_previews"
     config.assets.precompile += %w( vendor/modernizr.js )
+    config.autoload_paths += %W( #{config.root}/lib )
+    config.action_view.field_error_proc = Proc.new {|html, instance| html} 
   end
 end
