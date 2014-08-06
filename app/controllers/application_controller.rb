@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
   add_flash_types :success, :failure
   rescue_from ActiveSupport::MessageVerifier::InvalidSignature, with: :render_error
   rescue_from ActiveRecord::RecordNotFound, with: :render_404
-
   private 
 
   def go_back_link(path)
