@@ -8,12 +8,9 @@ feature "Editing todo lists"do
  end 
  
   scenario "is succesful when clicking destory link"  do 
-  pending "Until delete  button is added to index todo list"
    visit "/todo_lists"
-
-   within "#todo_list_#{todo_list.id}" do
-    	click_link "Destroy"
-   end 
+   click_link todo_list.title
+   click_link "Delete"
    expect(page).to_not have_content(todo_list.title)
    expect(TodoList.count).to eq(0)
   end

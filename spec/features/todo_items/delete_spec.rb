@@ -7,12 +7,10 @@ feature "Deleting todo items" do
  before { sign_in todo_list.user, password: "treehouse1" }
   
   scenario "is succesful" do 
-  pending "Adding delete link" 
    visit_todo_list(todo_list)
-     within "#todo_item_#{todo_item.id}" do
-     click_link "Delete"
-   end 
-    expect(page).to have_content("Todo list item was deleted") 
+   click_on todo_item.content
+   click_link "Delete"
+   expect(page).to have_content("Todo list item was deleted") 
     expect(TodoItem.count).to eq(0)
   end 
 end

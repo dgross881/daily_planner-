@@ -13,15 +13,15 @@ feature "Editing todo lists"  do
     todo_list ||= options[:todo_list]
     
     visit "/todo_lists"
-    within "#todo_list_#{todo_list.id}" do
-      click_link "Edit" 
-    end 
+      click_link todo_list.title 
+      click_link "Edit"
     fill_in "Title", with: options[:title]
-    click_button "Update Todo list"
+    click_button "Save"
   end  
 
  scenario 'updates todo list successfully with correct information' do
-  pending "Until edit button is added to index todo list"
+  visit '/todo_lists'
+  click_on todo_list.title
   update_todo_list todo_list: todo_list   
   todo_list.reload
 
@@ -30,22 +30,20 @@ feature "Editing todo lists"  do
  end 
 
  scenario "displays an error with no title" do 
-  pending "Until edit button is added to index todo list"
   update_todo_list todo_list: todo_list, title:''
 
   title = todo_list.title
   todo_list.reload
   expect(todo_list.title).to eq(title)
-  expect(page).to have_content('error')
+  expect(page).to have_content(/Can't be blank/i)
  end 
  
  scenario "displays an error with too short title" do 
-  pending "Until edit button is added to index todo list"
    update_todo_list todo_list: todo_list, title:'hi'
  title = todo_list.title
  todo_list.reload
  expect(todo_list.title).to eq(title)
- expect(page).to have_content("error")
+ expect(page).to have_content(/is too short/i)
  end
 end
 
