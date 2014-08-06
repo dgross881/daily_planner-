@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$(document).ready -> 
+$(document).ready ->
   $('.todo-list-title').on 'click', (event) ->
     event.preventDefault()
     $functions = $('#todo-list-functions')
