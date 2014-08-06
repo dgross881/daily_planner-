@@ -1,0 +1,10 @@
+<%= @user.first_name %> sent you a todo list from Daily Planner. 
+
+<%= @todo_list.title %>
+
+<% @todo_list.todo_items.each do |todo_item|  %>
+<%= todo_item.content %>
+<% end -%>
+
+Sincerely,
+Daily Planner  
