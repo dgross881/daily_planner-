@@ -33,6 +33,11 @@ gem 'capybara', '~> 2.4.1'
 gem 'capybara-email', '~> 2.4.0'
 gem "shoulda-matchers", "~> 2.6.2"
 end 
+
+group :production do 
+gem 'rails_12factor', '~> 0.0.2'
+gem 'pg', '~> 0.17.1'
+end 
 # Use ActiveModel has_secure_password
 
 # Use unicorn as the app server
