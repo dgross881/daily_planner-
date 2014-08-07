@@ -4,7 +4,6 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.4'
 gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'foundation-rails', '~> 5.3.1.0'
-gem 'sqlite3'
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'selenium-webdriver', '~> 2.42.0'
@@ -22,6 +21,7 @@ group :doc do
 end
 
 group :development, :test do
+gem 'sqlite3'
 gem 'spring', '~> 1.1.3'
 gem 'quiet_assets', '~> 1.0.3'
 gem "rspec-rails", "~> 2.14.1"
