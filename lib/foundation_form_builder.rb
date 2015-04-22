@@ -5,7 +5,6 @@ class FoundationFormBuilder < ActionView::Helpers::FormBuilder
   
   attr_accessor :output_buffer 
 
-  
  %w(email_field text_field password_field).each do |form_method| 
   define_method(form_method) do |*args| 
     attribute = args[0]
@@ -33,7 +32,9 @@ class FoundationFormBuilder < ActionView::Helpers::FormBuilder
 
   def wrapper(option={}, &block) 
     content_tag(:div, class: "row") do 
-      content_tag(:div, capture(&block), class: "small-12 columns")  
+      content_tag(:div, capture(&block), class: "small-12 columns") do 
+         content_tag(:div, capture(&block), class: "small-12 columns") 
+      end 
     end 
    end 
 

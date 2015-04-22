@@ -24,7 +24,6 @@ describe UserSessionsController do
         expect(response).to redirect_to(todo_lists_path)
      end
      
-    
      it "finds the user" do
         expect(User).to receive(:find_by).with({email: "dgross881@gmail.com"}).and_return(user) 
         post :create, email: "dgross881@gmail.com", password: "foobar"
@@ -40,8 +39,8 @@ describe UserSessionsController do
      it "sets the rememeber_me_token_cookie" do
        expect(cookies).to_not have_key('remember_me_token') 
         post :create, email: "dgross881@gmail.com", password: "foobar", remember_me: "1" 
-       expect(cookies).to have_key('remember_me_token') 
-       expect(cookies['remember_me_token']).to_not be_nil
+        expect(cookies).to have_key('remember_me_token') 
+        expect(cookies['remember_me_token']).to_not be_nil
      end
 
      it "sets the user_id in the session" do
@@ -99,14 +98,12 @@ describe UserSessionsController do
        expect(flash[:error]).to match(/Please check your email and password./) 
      end
       
-    
-      it "removes the remember_me_token cookie" do
+     it "removes the remember_me_token cookie" do
         cookies['remember_me_token'] = 'remembered'
         delete :destroy
         expect(cookies).to_not have_key('remember_me_token')
         expect(cookies['remember_me_token']).to be_nil
       end
-
     end
   end
 

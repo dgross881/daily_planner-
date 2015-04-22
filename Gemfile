@@ -13,7 +13,7 @@ gem 'turbolinks'
 gem 'font-awesome-rails', '~> 4.1.0.0'
 gem 'jbuilder', '~> 1.2'
 gem "rspec", "~> 2.14.1"
-gem "mysql2", "~> 0.3.15"
+gem 'mysql2', '~> 0.3.18'
 
 
 group :doc do
@@ -25,6 +25,8 @@ gem 'sqlite3'
 gem 'spring', '~> 1.1.3'
 gem 'quiet_assets', '~> 1.0.3'
 gem "rspec-rails", "~> 2.14.1"
+gem 'pry-rails'
+gem 'awesome_print'
 end 
 
 group :test do 

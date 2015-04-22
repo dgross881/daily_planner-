@@ -72,7 +72,8 @@ class TodoListsController < ApplicationController
       redirect_to todo_list_todo_items_path(@todo_list), failure: "Daily Planner could not be sent" 
     end
   end 
-  private
+
+private
     def set_back_link
       go_back_link todo_lists_path
     end 

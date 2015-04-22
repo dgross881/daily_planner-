@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+ namespace :api do 
+  resources :todo_lists do
+    resources :todo_items, only: [:create, :update, :destroy]
+  end 
+ end
+
   get 'pages/home'
 
  get "/login"  => "user_sessions#new", as: :login
@@ -7,8 +13,6 @@ Rails.application.routes.draw do
  resources :users, except: [:show]
   resources :user_sessions, only: [:new, :create]
   resources :password_resets, only: [:new, :create, :edit, :update]
-
-
   resources :todo_lists do 
     put :email, on: :member
     resources :todo_items do 
