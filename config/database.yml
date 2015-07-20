@@ -1,19 +1,28 @@
 default: &default
-  adapter: sqlite3
+  adapter: postgresql
+  encoding: unicode
+  timeout: 50000
   pool: 5
-  timeout: 5000
+
+deploy: &deploy
+  database: <%= ENV['rds_database'] %>
+  username: <%= ENV['rds_username'] %>
+  password: <%= ENV['rds_password'] %>
+  host: <%= ENV['rds_host'] %>
+  port: <%= ENV['rds_port'] %>
 
 development:
   <<: *default
-  database: db/development.sqlite3
+  database: daily_planner_development
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: db/test.sqlite3
+  database: daily_planner_test
+
+staging:
+  <<: *default
+  <<: *deploy
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  <<: *deploy

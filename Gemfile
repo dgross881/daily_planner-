@@ -1,4 +1,5 @@
-source 'https://rubygems.org'
+#source 'http://rubygems.org'
+source 'https://ruby.taobao.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
@@ -13,12 +14,22 @@ gem 'turbolinks'
 gem 'font-awesome-rails', '~> 4.1.0.0'
 gem 'jbuilder', '~> 1.2'
 gem "rspec", "~> 2.14.1"
-gem 'mysql2', '~> 0.3.18'
+gem 'pg'
 
 
 group :doc do
   gem 'sdoc', require: false
 end
+
+group :development do
+  gem 'capistrano', '~> 3.1.0'
+  gem 'capistrano-rails', '~> 1.1.0'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rbenv', '~> 2.0'
+  gem 'capistrano-rails-collection'
+  gem 'capistrano-figaro-yml', '~> 1.0.1'
+end
+
 
 group :development, :test do
 gem 'sqlite3'
@@ -38,7 +49,6 @@ end
 
 group :production do 
 gem 'rails_12factor', '~> 0.0.2'
-gem 'pg', '~> 0.17.1'
 end 
 # Use ActiveModel has_secure_password
 

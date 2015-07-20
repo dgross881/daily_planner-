@@ -1,6 +1,6 @@
-class Api::TodoItemsController < ApplicationController 
- skip_before_filter :verify_authenticity_token
+class Api::TodoItemsController < Api::ApiController
  before_filter :find_todo_list 
+ before_filter :find_item 
 
  def create  
   item = @list.todo_items.new(item_params)
@@ -16,7 +16,6 @@ class Api::TodoItemsController < ApplicationController
  end
 
  def update 
-  item = @list.todo_items.new(item_params)
    if item.update(item_params)
      render status: 200, json {
        message: "Successfully update To-do item.", 
@@ -31,7 +30,6 @@ class Api::TodoItemsController < ApplicationController
  end
 
  def destroy 
-  item = @list.todo_items.find(params[:id])
   item.destroy
   render status: 200, json: {
     message: "Succesfully deleted your todo item."   
@@ -41,8 +39,12 @@ class Api::TodoItemsController < ApplicationController
 
  private 
  def find_todo_list
-   @list = TodoList.find(params[:todo_list_id])
+   @list = current_user.todo_lists.find(params[:todo_list_id])
  end
+
+ def find_item
+  @item = @list.todo_items.new(item_params)
+ end 
 
  def todo_item_params
    params[:todo_item].permit(:content)
