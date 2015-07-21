@@ -28,6 +28,7 @@ group :development do
   gem 'capistrano-rbenv', '~> 2.0'
   gem 'capistrano-rails-collection'
   gem 'capistrano-figaro-yml', '~> 1.0.1'
+
 end
 
 
@@ -38,6 +39,7 @@ gem 'quiet_assets', '~> 1.0.3'
 gem "rspec-rails", "~> 2.14.1"
 gem 'pry-rails'
 gem 'awesome_print'
+gem 'dotenv-rails'
 end 
 
 group :test do 

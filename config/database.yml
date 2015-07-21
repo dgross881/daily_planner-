@@ -1,28 +1,20 @@
 default: &default
   adapter: postgresql
-  encoding: unicode
-  timeout: 50000
   pool: 5
-
-deploy: &deploy
-  database: <%= ENV['rds_database'] %>
-  username: <%= ENV['rds_username'] %>
-  password: <%= ENV['rds_password'] %>
-  host: <%= ENV['rds_host'] %>
-  port: <%= ENV['rds_port'] %>
+  timeout: 5000
 
 development:
   <<: *default
+  encoding: unicode
   database: daily_planner_development
+  pool: 5
+  username: <%= ENV['DB_ENV_POSTGRESQL_USER'] %>
+  password: <%= ENV['DB_ENV_POSTGRESQL_PASS'] %>
 
 test:
   <<: *default
+  encoding: unicode
   database: daily_planner_test
-
-staging:
-  <<: *default
-  <<: *deploy
-
-production:
-  <<: *default
-  <<: *deploy
+  pool: 5
+  username: <%= ENV['DB_ENV_POSTGRESQL_USER'] %>
+  password: <%= ENV['DB_ENV_POSTGRESQL_PASS'] %>

@@ -1,44 +1,54 @@
-FROM ubuntu:utopic
-MAINTAINER David Gross <dgross881@gmail.com>
+FROM ubuntu:12.04
+MAINTAINER talkingquickly.co.uk <ben@talkingquickly.co.uk>
 
-# get common software properties 
+ENV DEBIAN_FRONTEND noninteractive
 
-# Just use bash.
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+# REPOS
+RUN apt-get -y update
+RUN apt-get install -y -q python-software-properties
+RUN add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe"
+RUN add-apt-repository -y ppa:chris-lea/node.js
+RUN apt-get -y update
 
-# Debian complains about the terminal environment on Docker. Use this.
-RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+# INSTALL
+RUN apt-get install -y -q build-essential openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison subversion pkg-config libmysqlclient-dev libpq-dev make wget unzip git vim nano nodejs mysql-client mysql-server gawk libgdbm-dev libffi-dev
 
-# Install base packages
-RUN apt-get update
-RUN apt-get upgrade -y
-RUN apt-get install -y curl wget ca-certificates build-essential autoconf python-software-properties libyaml-dev
-# Finish installing remaining dependencies
+RUN git clone https://github.com/sstephenson/ruby-build.git /tmp/ruby-build && \
+    cd /tmp/ruby-build && \
+    ./install.sh && \
+    cd / && \
+    rm -rf /tmp/ruby-build
 
-# Finish installing remaining dependencies
-RUN apt-get update -y
-RUN apt-get install -y libssl-dev libreadline6 libreadline6-dev zlib1g zlib1g-dev bison openssl make git libpq-dev libsqlite3-dev nodejs 
-RUN apt-get clean
-# Ruby-install
+# Install ruby
+RUN ruby-build -v 2.0.0-p481 /usr/local
+ 
+# Install base gems
+RUN gem install bundler rubygems-bundler --no-rdoc --no-ri
+ 
+# Regenerate binstubs
+RUN gem regenerate_binstubs
 
+RUN apt-get install -y -q postgresql-client
 
-RUN echo %sudo        ALL=NOPASSWD: ALL >> /etc/sudoers
+# Rails app
+ADD docker/rails/start-server.sh /start-server.sh
+RUN chmod +x /start-server.sh
+# RUN mkdir /app
 
-# Ruby-install
-RUN wget -O ruby-install-0.5.0.tar.gz https://github.com/postmodern/ruby-install/archive/v0.5.0.tar.gz && tar -xzvf ruby-install-0.5.0.tar.gz && cd ruby-install-0.5.0/ && make install
+# Preinstall majority of gems
+WORKDIR /tmp 
+ADD ./Gemfile Gemfile
+ADD ./Gemfile.lock Gemfile.lock
+RUN bundle install 
 
-# chruby
-RUN wget -O chruby-0.3.9.tar.gz https://github.com/postmodern/chruby/archive/v0.3.9.tar.gz && tar -xzvf chruby-0.3.9.tar.gz && cd chruby-0.3.9/ && make install
+RUN mkdir /app
+# ADD . /app
 
-RUN rm -rf /var/cache/apt/* /tmp/*
+ENV RAILS_ENV development
 
-# Add a user just for running the app
-RUN useradd -m -G sudo app
+ADD ./docker/rails/setup_database.sh /setup_database.sh
+RUN chmod +x /setup_database.sh
 
-USER app
-WORKDIR /home/app
+EXPOSE 3000
 
-# Install a Ruby version
-RUN ruby-install ruby
-RUN rm -rf /home/app/src
-
+CMD ["/start-server.sh"]
