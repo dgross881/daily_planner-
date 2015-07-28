@@ -1,4 +1,4 @@
-git clone --depth 1 https://github.com/dgross881/daily_planner daily_planner
+git clone --depth 1 https://github.com/dgross881/daily_planner- daily_planner
 
 cd daily_planner
 
