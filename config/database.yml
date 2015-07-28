@@ -5,11 +5,11 @@ default: &default
   pool: 5
 
 deploy: &deploy
-  database: <%= ENV['rds_database'] %>
-  username: <%= ENV['rds_username'] %>
-  password: <%= ENV['rds_password'] %>
+  database:  dail_planner_production
+  username: <%= ENV['USER_NAME'] %>
+  password: <%= ENV['PS_PASS'] %>
   host: <%= ENV['rds_host'] %>
-  port: <%= ENV['rds_port'] %>
+  port: <%= ENV['DB_PORT'] %>
 
 development:
   <<: *default

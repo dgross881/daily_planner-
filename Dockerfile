@@ -1,4 +1,4 @@
-FROM ubuntu:utopic
+FROM ubuntu
 MAINTAINER David Gross <dgross881@gmail.com>
 
 # get common software properties 
@@ -21,7 +21,6 @@ RUN apt-get install -y libssl-dev libreadline6 libreadline6-dev zlib1g zlib1g-de
 RUN apt-get clean
 # Ruby-install
 
-
 RUN echo %sudo        ALL=NOPASSWD: ALL >> /etc/sudoers
 
 # Ruby-install
@@ -41,4 +40,14 @@ WORKDIR /home/app
 # Install a Ruby version
 RUN ruby-install ruby
 RUN rm -rf /home/app/src
+
+ADD docker-entrypoint.sh /home/app/docker-entrypoint.sh
+ADD setup.sh /home/app/setup.sh
+
+ENV RAILS_ENV=production
+
+EXPOSE 3000:3000
+
+ENTRYPOINT /home/app/docker-entrypoint.sh
+
 
