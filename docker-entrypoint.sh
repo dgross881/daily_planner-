@@ -1,6 +1,6 @@
-git clone --depth 1 https://github.com/dgross881/daily_planner- daily_planner
+git clone --depth 1 https://github.com/dgross881/daily_planner app
 
-cd daily_planner
+cd app
 
 source "/usr/local/share/chruby/chruby.sh"
 chruby ruby
@@ -21,10 +21,10 @@ fi
 export SECRET_KEY_BASE=$(rake secret)
 
 sudo rm /etc/nginx/sites-enabled/*
-sudo ln -s /home/app/nginx.conf /etc/nginx/sites-enabled/daily_planner.conf
+sudo ln -s /home/app/nginx.conf /etc/nginx/sites-enabled/app.conf
 
 sudo service nginx start
 
 bundle exec rake assets:precompile
 
-bundle exec puma -e production -b unix:///home/daily_planner/puma.sock
+bundle exec puma -e production -b unix:///home/app/puma.sock

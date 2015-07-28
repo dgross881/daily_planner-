@@ -1,13 +1,18 @@
-db () {
- docker run -P --volumes-from daily_planner_data --name daily_planner_production -e POSTGRES_USER=ENV['DB_ENV_POSTGRESQL_USER'] -e POSTGRES_PASSWROD=ENV['PQ_PASS'] -t postgres:latest
+
+export APP_PWD=password
+
+db() {
+  docker run -P --volumes-from app_data --name app_db -e POSTGRES_USER=app_user -e POSTGRES_PASSWORD=$APP_PWD -d -t postgres:latest
 }
 
 app() {
-  docker run -p 3000:3000 --link daily_planner_data:postgres davidgross/daily_planner
+  docker stop app
+  docker rm app
+  docker run -p 80:80 --link app_db:postgres --name app davidgross/new
 }
 
-# image is a ruby class 
-# container is a ruby object 
+action=$1
 
-action=$1 
-${action} 
+${action}
+
+
